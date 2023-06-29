@@ -146,33 +146,40 @@ func (s *Server) executeQuery(ctx context.Context, params lsp.ExecuteCommandPara
 			params.Range.End.Character,
 		)
 	}
-	stmts, err := getStatements(text)
-	if err != nil {
-		return nil, err
-	}
+	// Old code, not needed
+	//stmts, err := getStatements(text)
+	//if err != nil {
+	//	return nil, err
+	//}
 
 	// execute statements
 	buf := new(bytes.Buffer)
-	for _, stmt := range stmts {
-		query := strings.TrimSpace(stmt.String())
-		if query == "" {
-			continue
-		}
-
-		if _, isQuery := database.QueryExecType(query, ""); isQuery {
-			res, err := s.query(ctx, query, showVertical)
-			if err != nil {
-				return nil, err
-			}
-			fmt.Fprintln(buf, res)
-		} else {
-			res, err := s.exec(ctx, query, showVertical)
-			if err != nil {
-				return nil, err
-			}
-			fmt.Fprintln(buf, res)
-		}
+	res, err := s.query(ctx, text, showVertical)
+	if err != nil {
+		return nil, err
 	}
+	fmt.Fprintln(buf, res)
+	// Old code, not needed
+	// for _, stmt := range stmts {
+	// 	query := strings.TrimSpace(stmt.String())
+	// 	if query == "" {
+	// 		continue
+	// 	}
+
+	// 	if _, isQuery := database.QueryExecType(query, ""); isQuery {
+	// 		res, err := s.query(ctx, query, showVertical)
+	// 		if err != nil {
+	// 			return nil, err
+	// 		}
+	// 		fmt.Fprintln(buf, res)
+	// 	} else {
+	// 		res, err := s.exec(ctx, query, showVertical)
+	// 		if err != nil {
+	// 			return nil, err
+	// 		}
+	// 		fmt.Fprintln(buf, res)
+	// 	}
+	// }
 	return buf.String(), nil
 }
 
