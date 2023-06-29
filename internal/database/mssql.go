@@ -9,6 +9,7 @@ import (
 	"strconv"
 
 	_ "github.com/denisenkom/go-mssqldb"
+	"github.com/microsoft/go-mssqldb/azuread"
 	"github.com/lighttiger2505/sqls/dialect"
 	"golang.org/x/crypto/ssh"
 )
@@ -31,7 +32,7 @@ func mssqlOpen(dbConnCfg *DBConfig) (*DBConnection, error) {
 	if dbConnCfg.SSHCfg != nil {
 		return nil, fmt.Errorf("connect via SSH is not supported")
 	}
-	dbConn, err := sql.Open("sqlserver", dsn)
+	dbConn, err := sql.Open(azuread.DriverName, dsn)
 	if err != nil {
 		return nil, err
 	}
