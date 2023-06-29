@@ -3,9 +3,9 @@ package handler
 import (
 	"testing"
 
-	"github.com/lighttiger2505/sqls/internal/config"
-	"github.com/lighttiger2505/sqls/internal/database"
-	"github.com/lighttiger2505/sqls/internal/lsp"
+	"github.com/mvelzel/sqls/internal/config"
+	"github.com/mvelzel/sqls/internal/database"
+	"github.com/mvelzel/sqls/internal/lsp"
 )
 
 type completionTestCase struct {

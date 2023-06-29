@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 
-	"github.com/lighttiger2505/sqls/dialect"
+	"github.com/mvelzel/sqls/dialect"
 )
 
 type MockDBRepository struct {

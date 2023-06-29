@@ -11,7 +11,7 @@ require (
 	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
 	github.com/k0kubun/pp v2.4.0+incompatible
 	github.com/mattn/go-sqlite3 v1.14.8
-	github.com/microsoft/go-mssqldb v1.3.0 // indirect
+	github.com/microsoft/go-mssqldb v1.3.0
 	github.com/olekukonko/tablewriter v0.0.5
 	github.com/sourcegraph/jsonrpc2 v0.1.0
 	github.com/urfave/cli/v2 v2.3.0

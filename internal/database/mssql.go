@@ -10,7 +10,7 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/microsoft/go-mssqldb/azuread"
-	"github.com/lighttiger2505/sqls/dialect"
+	"github.com/mvelzel/sqls/dialect"
 	"golang.org/x/crypto/ssh"
 )
 

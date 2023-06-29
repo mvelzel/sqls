@@ -3,10 +3,10 @@ package formatter
 import (
 	"testing"
 
-	"github.com/lighttiger2505/sqls/ast"
-	"github.com/lighttiger2505/sqls/internal/config"
-	"github.com/lighttiger2505/sqls/internal/lsp"
-	"github.com/lighttiger2505/sqls/parser"
+	"github.com/mvelzel/sqls/ast"
+	"github.com/mvelzel/sqls/internal/config"
+	"github.com/mvelzel/sqls/internal/lsp"
+	"github.com/mvelzel/sqls/parser"
 )
 
 func TestEval(t *testing.T) {
