@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"strconv"
 
-	_ "github.com/denisenkom/go-mssqldb"
+	_ "github.com/microsoft/go-mssqldb"
 	"github.com/microsoft/go-mssqldb/azuread"
 	"github.com/mvelzel/sqls/dialect"
 	"golang.org/x/crypto/ssh"

@@ -3,7 +3,6 @@ module github.com/mvelzel/sqls
 go 1.16
 
 require (
-	github.com/denisenkom/go-mssqldb v0.11.0
 	github.com/go-sql-driver/mysql v1.6.0
 	github.com/godror/godror v0.29.0
 	github.com/google/go-cmp v0.5.6
