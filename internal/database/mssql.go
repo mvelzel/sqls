@@ -47,6 +47,7 @@ func mssqlOpen(dbConnCfg *DBConfig) (*DBConnection, error) {
 	return &DBConnection{
 		Conn:    conn,
 		SSHConn: sshConn,
+		Driver: dialect.DatabaseDriverMssql,
 	}, nil
 }
 
