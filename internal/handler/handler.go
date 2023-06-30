@@ -368,6 +368,7 @@ func (s *Server) newDBConnection(ctx context.Context) (*database.DBConnection, e
 		connCfg.DBName = s.curDBName
 	}
 	s.curDBCfg = connCfg
+	s.curDBName = connCfg.DBName
 
 	// Connect database
 	conn, err := database.Open(connCfg)

@@ -24,6 +24,7 @@ const (
 	CommandShowDatabases    = "showDatabases"
 	CommandShowSchemas      = "showSchemas"
 	CommandShowConnections  = "showConnections"
+	CommandShowCurrentDatabase  = "showCurrentDatabase"
 	CommandSwitchDatabase   = "switchDatabase"
 	CommandSwitchConnection = "switchConnections"
 	CommandShowTables       = "showTables"
@@ -75,6 +76,11 @@ func (h *Server) handleTextDocumentCodeAction(ctx context.Context, conn *jsonrpc
 			Command:   CommandShowTables,
 			Arguments: []interface{}{},
 		},
+		{
+			Title:     "Show Current Database",
+			Command:   CommandShowCurrentDatabase,
+			Arguments: []interface{}{},
+		},
 	}
 	return commands, nil
 }
@@ -98,6 +104,8 @@ func (s *Server) handleWorkspaceExecuteCommand(ctx context.Context, conn *jsonrp
 		return s.showSchemas(ctx, params)
 	case CommandShowConnections:
 		return s.showConnections(ctx, params)
+	case CommandShowCurrentDatabase:
+		return s.showCurrentDatabase(ctx, params)
 	case CommandSwitchDatabase:
 		return s.switchDatabase(ctx, params)
 	case CommandSwitchConnection:
@@ -313,6 +321,10 @@ func (s *Server) switchDatabase(ctx context.Context, params lsp.ExecuteCommandPa
 	}
 
 	return nil, nil
+}
+
+func (s *Server) showCurrentDatabase(ctx context.Context, params lsp.ExecuteCommandParams) (result interface{}, err error) {
+	return s.curDBName, nil
 }
 
 func (s *Server) showConnections(ctx context.Context, params lsp.ExecuteCommandParams) (result interface{}, err error) {
