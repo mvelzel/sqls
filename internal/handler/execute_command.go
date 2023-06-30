@@ -330,7 +330,7 @@ func (s *Server) showCurrentDatabase(ctx context.Context, params lsp.ExecuteComm
 func (s *Server) showConnections(ctx context.Context, params lsp.ExecuteCommandParams) (result interface{}, err error) {
 	results := []string{}
 	conns := s.getConfig().Connections
-	for i, conn := range conns {
+	for _, conn := range conns {
 		var desc string
 		if conn.DataSourceName != "" {
 			desc = conn.DataSourceName
@@ -344,7 +344,7 @@ func (s *Server) showConnections(ctx context.Context, params lsp.ExecuteCommandP
 				desc = fmt.Sprintf("unix(%s)/%s", conn.Path, conn.DBName)
 			}
 		}
-		res := fmt.Sprintf("%d %s %s %s", i+1, conn.Driver, conn.Alias, desc)
+		res := fmt.Sprintf("%s %s %s", conn.Alias, conn.Driver, desc)
 		results = append(results, res)
 	}
 	return strings.Join(results, "\n"), nil
@@ -382,6 +382,7 @@ func (s *Server) switchConnections(ctx context.Context, params lsp.ExecuteComman
 	s.curConnectionIndex = index
 
 	// close and reconnection to database
+	s.curDBName = ""
 	if err := s.reconnectionDB(ctx); err != nil {
 		return nil, err
 	}
