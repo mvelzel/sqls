@@ -171,7 +171,7 @@ func (s *Server) handleInitialize(ctx context.Context, conn *jsonrpc2.Conn, req 
 	// NOTE: If no connection is found at this point, it is possible that the connection settings are sent to workspace config, so don't make an error
 	messenger := lsp.NewLspMessenger(conn)
 	if err := s.reconnectionDB(ctx); err != nil {
-		if !errors.Is(ErrNoConnection, err) {
+		if errors.Is(ErrNoConnection, err) {
 			if err := messenger.ShowInfo(ctx, err.Error()); err != nil {
 				log.Println("send info", err.Error())
 				return nil, err
